@@ -19,7 +19,6 @@ module "compute_instance" {
   source                    = "git::https://github.com/opz0/terraform-gcp-vm.git?ref=v1.0.0"
   name                      = "app"
   environment               = "test"
-  project_id                = "opz0-397319"
   instance_tags             = ["foo", "bar"]
   machine_type              = "e2-small"
   gcp_zone                  = "asia-northeast1-a"

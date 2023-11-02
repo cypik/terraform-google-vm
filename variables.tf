@@ -34,12 +34,6 @@ variable "image" {
   description = "Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
 }
 
-variable "project_id" {
-  description = "Project where the source image comes from. The default project contains CentOS images."
-  type        = string
-  default     = ""
-}
-
 variable "machine_type" {
   type        = string
   default     = ""
@@ -95,7 +89,7 @@ variable "allow_stopping_for_update" {
 }
 
 variable "nat_ip" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = " (Optional) The IP address that will be 1:1 mapped to the instance's network ip. If not given, one will be generated."
 }
