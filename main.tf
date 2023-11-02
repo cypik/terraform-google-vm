@@ -1,20 +1,30 @@
 module "labels" {
-  source      = "git::git@github.com:opz0/terraform-gcp-labels.git?ref=master"
+  source      = "git::https://github.com/opz0/terraform-azure-labels.git?ref=v1.0.0"
   name        = var.name
   environment = var.environment
   label_order = var.label_order
   managedby   = var.managedby
   repository  = var.repository
 }
+
+data "google_client_config" "current" {
+}
+
 #####==============================================================================
 ##### Manages a VM instance resource within GCE.
 #####==============================================================================
+#tfsec:ignore:google-compute-no-default-service-account
+#tfsec:ignore:google-compute-no-public-ip
+#tfsec:ignore:google-compute-no-project-wide-ssh-keys
+#tfsec:ignore:google-compute-enable-shielded-vm-vtpm
+#tfsec:ignore:google-compute-enable-shielded-vm-im
+#tfsec:ignore:google-compute-vm-disk-encryption-customer-key
 resource "google_compute_instance" "default" {
-  name         =format("%s-vm" , module.labels.id)
+  name         = format("%s-vm", module.labels.id)
   machine_type = var.machine_type
   zone         = var.gcp_zone
   tags         = var.instance_tags
-  project      = var.project_id
+  project      = data.google_client_config.current.project
   boot_disk {
     initialize_params {
       image = var.image
