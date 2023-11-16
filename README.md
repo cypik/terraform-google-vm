@@ -16,15 +16,17 @@ This section configures a compute instance. It specifies the name, environment, 
 
 ```hcl
 module "compute_instance" {
-  source                    = "git::https://github.com/opz0/terraform-gcp-vm.git?ref=v1.0.0"
-  name                      = "app"
-  environment               = "test"
-  instance_tags             = ["foo", "bar"]
-  machine_type              = "e2-small"
-  gcp_zone                  = "asia-northeast1-a"
-  service_account_scopes    = ["cloud-platform"]
-  subnetwork                = module.subnet.subnet_id
+  source                 = "git::https://github.com/opz0/terraform-gcp-vm.git?ref=v1.0.0"
+  name                   = "app"
+  environment            = "test"
+  instance_tags          = ["foo", "bar"]
+  machine_type           = "e2-small"
+  gcp_zone               = "asia-northeast1-a"
+  service_account_scopes = ["cloud-platform"]
+  subnetwork             = module.subnet.subnet_id
 
+  ######### public IP if enable_public_ip is true
+  enable_public_ip = true
   metadata = {
     ssh-keys = <<EOF
       test:ssh-rsa AAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxbLLNM= suresh@suresh
@@ -45,6 +47,7 @@ You can customize the input variables according to your specific requirements.
 - 'service_account_scopes': List of service account scopes.
 - 'subnetwork': The subnet ID.
 - 'metadata': Metadata, including SSH keys.
+- 'public_ip' : public IP if enable_public_ip is true.
 
 ## Module Outputs
 Each module may have specific outputs. You can retrieve these outputs by referencing the module in your Terraform configuration.

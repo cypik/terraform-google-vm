@@ -23,7 +23,7 @@ module "subnet" {
   environment   = "test"
   gcp_region    = "asia-northeast1"
   network       = module.vpc.vpc_id
-  ip_cidr_range = "10.10.0.0/16"
+  ip_cidr_range = "192.168.0.0/24"
 }
 
 #####==============================================================================
@@ -56,6 +56,8 @@ module "compute_instance" {
   service_account_scopes = ["cloud-platform"]
   subnetwork             = module.subnet.subnet_id
 
+  ######### public IP if enable_public_ip is true
+  enable_public_ip = true
   metadata = {
     ssh-keys = <<EOF
       test:ssh-rsa AAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxbLLNM= suresh@suresh

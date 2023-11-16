@@ -88,8 +88,8 @@ variable "allow_stopping_for_update" {
   description = "must be set to true or your instance must have a desired_status of TERMINATED in order to update this field."
 }
 
-variable "nat_ip" {
-  type        = string
-  default     = ""
-  description = " (Optional) The IP address that will be 1:1 mapped to the instance's network ip. If not given, one will be generated."
+variable "enable_public_ip" {
+  description = "Predefined enable_public_ip  address for the instance."
+  type        = bool
+  default     = false
 }
