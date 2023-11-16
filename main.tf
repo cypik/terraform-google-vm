@@ -37,9 +37,11 @@ resource "google_compute_instance" "default" {
   network_interface {
     subnetwork = var.subnetwork
 
-    access_config {
-      // Ephemeral public IP
-      nat_ip = var.nat_ip
+    dynamic "access_config" {
+      for_each = var.enable_public_ip ? [1] : []
+      content {
+        # Add access_config settings here if needed
+      }
     }
   }
   metadata                = var.metadata
