@@ -20,7 +20,8 @@ data "google_client_config" "current" {
 #tfsec:ignore:google-compute-enable-shielded-vm-im
 #tfsec:ignore:google-compute-vm-disk-encryption-customer-key
 resource "google_compute_instance" "default" {
-  name         = format("%s-vm", module.labels.id)
+  count        = var.count_instance
+  name         = format("%s-vm-%s", module.labels.id, count.index)
   machine_type = var.machine_type
   zone         = var.gcp_zone
   tags         = var.instance_tags

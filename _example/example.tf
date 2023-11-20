@@ -48,6 +48,7 @@ module "firewall" {
 #####==============================================================================
 module "compute_instance" {
   source                 = "../"
+  count_instance         = 1
   name                   = "app"
   environment            = "test"
   instance_tags          = ["foo", "bar"]

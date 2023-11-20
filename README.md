@@ -17,6 +17,7 @@ This section configures a compute instance. It specifies the name, environment, 
 ```hcl
 module "compute_instance" {
   source                 = "git::https://github.com/opz0/terraform-gcp-vm.git?ref=v1.0.0"
+  count_instance         = 1
   name                   = "app"
   environment            = "test"
   instance_tags          = ["foo", "bar"]
@@ -48,6 +49,7 @@ You can customize the input variables according to your specific requirements.
 - 'subnetwork': The subnet ID.
 - 'metadata': Metadata, including SSH keys.
 - 'public_ip' : public IP if enable_public_ip is true.
+- 'count_instance' : The distinct index number (starting with 0) corresponding to this instance.
 
 ## Module Outputs
 Each module may have specific outputs. You can retrieve these outputs by referencing the module in your Terraform configuration.

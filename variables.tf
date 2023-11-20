@@ -93,3 +93,8 @@ variable "enable_public_ip" {
   type        = bool
   default     = false
 }
+variable "count_instance" {
+  description = "The distinct index number (starting with 0) corresponding to this instance."
+  type        = number
+  default     = 1
+}
