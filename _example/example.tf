@@ -1,5 +1,5 @@
 provider "google" {
-  project = "cypik-397319"
+  project = "opz0-397319"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -19,11 +19,10 @@ module "vpc" {
 #####==============================================================================
 module "subnet" {
   source        = "git::https://github.com/cypik/terraform-gcp-subnet.git?ref=v1.0.0"
-  name          = "subnet"
-  environment   = "test"
+  subnet_names  = ["subnet-a"]
   gcp_region    = "asia-northeast1"
   network       = module.vpc.vpc_id
-  ip_cidr_range = "192.168.0.0/24"
+  ip_cidr_range = ["10.10.1.0/24"]
 }
 
 #####==============================================================================

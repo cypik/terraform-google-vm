@@ -13,7 +13,7 @@ This project deploys a Google Cloud infrastructure using Terraform to create a V
 
 ## Usage
 This section configures a compute instance. It specifies the name, environment, project, instance tags, machine type, GCP zone, service account scopes, subnetwork (retrieved from the subnet module), and SSH keys for access.
-
+## Example: compute_instance
 ```hcl
 module "compute_instance" {
   source                 = "git::https://github.com/cypik/terraform-gcp-vm.git?ref=v1.0.0"
