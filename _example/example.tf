@@ -57,7 +57,6 @@ module "compute_instance" {
 
   # Enable public IP only if enable_public_ip is true
   enable_public_ip = true
-
   metadata = {
     ssh-keys = <<EOF
       test:ssh-rsa AAAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxbLLNM= suresh@suresh
