@@ -30,7 +30,7 @@ variable "repository" {
 
 variable "image" {
   type        = string
-  default     = "debian-cloud/debian-11"
+  default     = "ubuntu-2204-jammy-v20230908"
   description = "Source image family. If neither source_image nor source_image_family is specified, defaults to the latest public CentOS image."
 }
 

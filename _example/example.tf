@@ -51,6 +51,7 @@ module "compute_instance" {
   environment            = "test"
   instance_tags          = ["foo", "bar"]
   machine_type           = "e2-small"
+  image                  = "ubuntu-2204-jammy-v20230908"
   gcp_zone               = "asia-northeast1-a"
   service_account_scopes = ["cloud-platform"]
   subnetwork             = module.subnet.subnet_id
