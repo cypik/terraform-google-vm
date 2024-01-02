@@ -1,8 +1,3 @@
-output "id" {
-  value       = join("", google_compute_instance.default[*].instance_id)
-  description = "an identifier for the resource with format"
-}
-
 output "name" {
   value       = join("", google_compute_instance.default[*].name)
   description = "The name  of the instance."

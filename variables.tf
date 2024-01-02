@@ -93,3 +93,8 @@ variable "enable_public_ip" {
   type        = bool
   default     = false
 }
+
+variable "create_instances" {
+  type    = bool
+  default = true
+}

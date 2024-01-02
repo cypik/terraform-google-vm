@@ -1,5 +1,5 @@
 provider "google" {
-  project = "opz0-397319"
+  project = "local-concord-408802"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -55,7 +55,7 @@ module "compute_instance" {
   service_account_scopes = ["cloud-platform"]
   subnetwork             = module.subnet.subnet_id
 
-  ######### public IP if enable_public_ip is true
+  # Enable public IP only if enable_public_ip is true
   enable_public_ip = true
   metadata = {
     ssh-keys = <<EOF
