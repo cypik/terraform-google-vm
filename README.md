@@ -13,7 +13,7 @@ This project deploys a Google Cloud infrastructure using Terraform to create a V
 
 ## Usage
 This section configures a compute instance. It specifies the name, environment, project, instance tags, machine type, GCP zone, service account scopes, subnetwork (retrieved from the subnet module), and SSH keys for access.
-## Example: _compute_instance_
+## Example: _Compute_Instance_
 ```hcl
 module "compute_instance" {
   source                 = "git::https://github.com/cypik/terraform-gcp-vm.git?ref=v1.0.0"
@@ -48,13 +48,13 @@ You can customize the input variables according to your specific requirements.
 - `service_account_scopes` : List of service account scopes.
 - `subnetwork` : The subnet ID.
 - `metadata` : Metadata, including SSH keys.
-- `public_ip` : public IP if enable_public_ip is true.
+- `public_ip` : public IP if enable_public_ip is `true`.
 
 ## Module Outputs
 Each module may have specific outputs. You can retrieve these outputs by referencing the module in your Terraform configuration.
 
 ## Examples
-For detailed examples on how to use this module, please refer to the [EXAMPLE](https://github.com/cypik/terraform-gcp-vm/tree/master/_example) directory within this repository.
+For detailed examples on how to use this module, please refer to the [Examples](https://github.com/cypik/terraform-gcp-vm/tree/master/_example) directory within this repository.
 
 ## Author
 Your Name Replace **'[License Name]'** and **'[Your Name]'** with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
