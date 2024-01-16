@@ -1,5 +1,5 @@
 provider "google" {
-  project = "cypik-397319"
+  project = "local-concord-408802"
   region  = "asia-northeast1"
   zone    = "asia-northeast1-a"
 }
@@ -19,11 +19,10 @@ module "vpc" {
 #####==============================================================================
 module "subnet" {
   source        = "git::https://github.com/cypik/terraform-gcp-subnet.git?ref=v1.0.0"
-  name          = "subnet"
-  environment   = "test"
+  subnet_names  = ["subnet-a"]
   gcp_region    = "asia-northeast1"
   network       = module.vpc.vpc_id
-  ip_cidr_range = "192.168.0.0/24"
+  ip_cidr_range = ["10.10.1.0/24"]
 }
 
 #####==============================================================================
@@ -52,11 +51,12 @@ module "compute_instance" {
   environment            = "test"
   instance_tags          = ["foo", "bar"]
   machine_type           = "e2-small"
+  image                  = "ubuntu-2204-jammy-v20230908"
   gcp_zone               = "asia-northeast1-a"
   service_account_scopes = ["cloud-platform"]
   subnetwork             = module.subnet.subnet_id
 
-  ######### public IP if enable_public_ip is true
+  # Enable public IP only if enable_public_ip is true
   enable_public_ip = true
   metadata = {
     ssh-keys = <<EOF

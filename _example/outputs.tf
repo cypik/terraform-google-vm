@@ -8,11 +8,6 @@ output "self_link" {
   description = "The self_link of the instance."
 }
 
-output "id" {
-  value       = module.compute_instance.id
-  description = "The ID of the self_link."
-}
-
 output "instance_id" {
   value       = module.compute_instance.instance_id
   description = "The server-assigned unique identifier of this instance."
