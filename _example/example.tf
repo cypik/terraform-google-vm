@@ -55,7 +55,7 @@ module "compute_instance" {
   source                 = "../"
   name                   = "app"
   environment            = "test"
-  instance_count         = 3
+  instance_count         = 1
   instance_tags          = ["foo", "bar"]
   machine_type           = "e2-small"
   image                  = "ubuntu-2204-jammy-v20230908"
