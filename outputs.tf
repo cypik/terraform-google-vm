@@ -37,3 +37,8 @@ output "current_status" {
   value       = join("", google_compute_instance.default[*].current_status)
   description = "The current status of the instance. "
 }
+
+output "instance_count" {
+  description = "The value of the instance_count variable."
+  value       = var.instance_count
+}
