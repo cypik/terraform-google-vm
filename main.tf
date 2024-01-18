@@ -1,5 +1,6 @@
 module "labels" {
-  source      = "git::https://github.com/cypik/terraform-gcp-labels.git?ref=v1.0.0"
+  source      = "cypik/labels/google"
+  version     = "1.0.1"
   name        = var.name
   environment = var.environment
   label_order = var.label_order
@@ -20,7 +21,7 @@ data "google_client_config" "current" {
 #tfsec:ignore:google-compute-enable-shielded-vm-im
 #tfsec:ignore:google-compute-vm-disk-encryption-customer-key
 resource "google_compute_instance" "default" {
-  count        = var.create_instances ? 1 : 0
+  count        = var.create_instances && var.instance_count > 0 ? var.instance_count : 0
   name         = format("%s-vm-%02d", module.labels.id, count.index + 1)
   machine_type = var.machine_type
   zone         = var.gcp_zone

@@ -18,13 +18,13 @@ variable "label_order" {
 
 variable "managedby" {
   type        = string
-  default     = ""
+  default     = "cypik"
   description = "ManagedBy, eg 'cypik'."
 }
 
 variable "repository" {
   type        = string
-  default     = "https://github.com/cypik/terraform-gcp-vm"
+  default     = "https://github.com/cypik/terraform-google-vm"
   description = "Terraform current module repo"
 }
 
@@ -95,6 +95,18 @@ variable "enable_public_ip" {
 }
 
 variable "create_instances" {
-  type    = bool
-  default = true
+  type        = bool
+  default     = true
+  description = "Toggle to determine whether instances should be created or not. Set to 'true' to create instances, 'false' to skip instance creation."
+}
+
+variable "instance_count" {
+  type        = number
+  default     = 1
+  description = "The number of instances to create."
+}
+
+output "instance_count_output" {
+  description = "The value of the instance_count variable."
+  value       = var.instance_count
 }
