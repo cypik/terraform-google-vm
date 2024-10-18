@@ -21,12 +21,12 @@ data "google_client_config" "current" {}
 #tfsec:ignore:google-compute-enable-shielded-vm-im
 #tfsec:ignore:google-compute-vm-disk-encryption-customer-key
 resource "google_compute_instance" "vm_instance" {
-  count        = var.create_instances && var.instance_count > 0 ? var.instance_count : 0
-  name         = format("%s-vm-%02d", module.labels.id, count.index + 1)
-  machine_type = var.machine_type
-  zone         = var.zone
-  tags         = var.instance_tags
-  project      = data.google_client_config.current.project
+  count                     = var.create_instances && var.instance_count > 0 ? var.instance_count : 0
+  name                      = format("%s-vm-%02d", module.labels.id, count.index + 1)
+  machine_type              = var.machine_type
+  zone                      = var.zone
+  tags                      = var.instance_tags
+  project                   = data.google_client_config.current.project
   metadata                  = var.metadata
   metadata_startup_script   = var.metadata_startup_script
   allow_stopping_for_update = var.allow_stopping_for_update
