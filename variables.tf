@@ -1,6 +1,6 @@
 variable "name" {
   type        = string
-  default     = "test"
+  default     = ""
   description = "Name of the resource. Provided by the client when the resource is created. "
 }
 
@@ -89,9 +89,9 @@ variable "allow_stopping_for_update" {
 }
 
 variable "enable_public_ip" {
-  description = "Predefined enable_public_ip  address for the instance."
   type        = bool
   default     = false
+  description = "Predefined enable_public_ip  address for the instance."
 }
 
 variable "create_instances" {
@@ -107,227 +107,234 @@ variable "instance_count" {
 }
 
 output "instance_count_output" {
-  description = "The value of the instance_count variable."
   value       = var.instance_count
+  description = "The value of the instance_count variable."
 }
-
-
-#variable "disk_encryption_key_raw" {
-#  description = "Raw disk encryption key for the instance."
-#  type        = string
-#  default     = "your_raw_encryption_key_here"
-#}
-
-#variable "kms_key_self_link" {
-#  description = "Self link of the KMS key."
-#  type        = string
-#  default     = "projects/my-project/locations/us-central1/keyRings/my-key-ring/cryptoKeys/my-key"
-#}
-
-
-
-#variable "data_disk_size" {
-#  description = "Size of the data disk in GB."
-#  type        = number
-#  default     = 50
-#}
-#
-#variable "region" {
-#  description = "Region for the VM IP."
-#  type        = string
-#  default     = "us-central1"
-#}
-
-
 
 variable "enable_service_account" {
-  description = "Enable or disable the service account for the instance"
   type        = bool
   default     = false
+  description = "Enable or disable the service account for the instance"
 }
 
-
-
-#variable "vm_machine_type" {
-#  description = "Machine type for the VM instance"
-#  type        = string
-#  default     = "e2-medium"
-#}
-
-#variable "vm_zone" {
-#  description = "Zone for the VM instance"
-#  type        = string
-#  default     = "us-central1-a"
-#}
-
-
 variable "boot_disk_size" {
-  description = "Boot disk size in GB"
   type        = number
   default     = 20
+  description = "Boot disk size in GB"
 }
 
 variable "boot_disk_type" {
-  description = "Boot disk type"
   type        = string
-  default     = "pd-standard"
+  default     = ""
+  description = "Boot disk type"
 }
 
-#variable "enable_partner_metadata" {
-#  description = "Enable partner metadata"
-#  type        = bool
-#  default     = false
-#}
-
-#variable "partner_metadata_key" {
-#  description = "Partner metadata key"
-#  type        = string
-#  default     = ""
-#}
-
-#variable "partner_metadata_value" {
-#  description = "Partner metadata value"
-#  type        = any
-#  default     = {}
-#}
-
 variable "enable_shielded_instance_config" {
-  description = "Enable shielded instance config"
   type        = bool
   default     = false
+  description = "Enable shielded instance config"
 }
 
 variable "shielded_instance_config" {
-  description = "Shielded instance configuration options"
-  type        = map(bool)
+  type = map(bool)
   default = {
     enable_secure_boot          = false
     enable_vtpm                 = true
     enable_integrity_monitoring = true
   }
+  description = "Shielded instance configuration options"
 }
 
-#variable "data_disk_name" {
-#  description = "Name of the attached data disk"
-#  type        = string
-#  default     = "data-disk"
-#}
-
 variable "enable_network_performance_config" {
-  description = "Enable network performance configuration"
   type        = bool
   default     = false
+  description = "Enable network performance configuration"
 }
 
 variable "total_egress_bandwidth_tier" {
-  description = "Egress bandwidth tier"
   type        = string
   default     = "STANDARD"
+  description = "Egress bandwidth tier"
 }
 
-
-
-
-
 variable "nat_ip" {
-  description = "NAT IP address for public access"
   type        = string
   default     = ""
+  description = "NAT IP address for public access"
 }
 
 variable "network_tier" {
-  description = "Network tier for the public IP"
   type        = string
   default     = "STANDARD"
+  description = "Network tier for the public IP"
 }
 
 variable "public_ptr_domain_name" {
-  description = "Public PTR domain name for the instance"
   type        = string
   default     = ""
+  description = "Public PTR domain name for the instance"
 }
 
-
-
 variable "enable_ipv6" {
-  description = "Enable IPv6 access configuration"
   type        = bool
   default     = false
+  description = "Enable IPv6 access configuration"
 }
 
 variable "external_ipv6" {
-  description = "External IPv6 address"
   type        = string
   default     = ""
+  description = "External IPv6 address"
 }
 
 variable "enable_alias_ip_range" {
-  description = "Enable alias IP range"
   type        = bool
   default     = false
+  description = "Enable alias IP range"
 }
 
 variable "service_account_email" {
-  description = "Service account email"
   type        = string
   default     = ""
+  description = "Service account email"
 }
 
 variable "service_account_scopes" {
-  description = "Service account scopes"
   type        = list(string)
   default     = ["https://www.googleapis.com/auth/cloud-platform"]
+  description = "Service account scopes"
 }
 
 variable "enable_display" {
-  description = "Enable display for the instance"
   type        = bool
   default     = false
+  description = "Enable display for the instance"
 }
 
 variable "can_ip_forward" {
-  description = "Allow IP forwarding"
   type        = bool
   default     = false
+  description = "Allow IP forwarding"
 }
 
 variable "description" {
-  description = "Description for the instance"
   type        = string
   default     = "VM instance created with Terraform"
+  description = "Description for the instance"
 }
 
 variable "custom_hostname" {
-  description = "Custom hostname for the VM instance (RFC-1035 compliant)"
   type        = string
   default     = ""
+  description = "Custom hostname for the VM instance (RFC-1035 compliant)"
 }
 
 variable "enable_accelerator" {
-  description = "Enable GPU accelerator"
   type        = bool
   default     = false
+  description = "Enable GPU accelerator"
 }
 
 variable "accelerator_type" {
-  description = "Type of GPU accelerator"
   type        = string
   default     = "nvidia-tesla-k80"
+  description = "Type of GPU accelerator"
 }
 
 variable "accelerator_count" {
-  description = "Count of GPU accelerators"
   type        = number
   default     = 1
+  description = "Count of GPU accelerators"
 }
 
 variable "desired_status" {
-  type    = string
-  default = "RUNNING"
+  type        = string
+  default     = "RUNNING"
+  description = "Specifies the desired status for the resource. Default is RUNNING."
 }
 
 variable "local_disks" {
-  description = "Flag to determine if scratch disk should be created"
   type        = bool
   default     = false // Set the default value as per your requirement
+  description = "Flag to determine if scratch disk should be created"
+}
+
+variable "auto_delete" {
+  type        = bool
+  default     = true
+  description = "Determines whether the disk should be auto-deleted when the instance is deleted."
+}
+
+variable "device_name" {
+  type        = string
+  default     = "boot-disk"
+  description = "Specifies the name of the device, typically for the boot disk."
+}
+
+variable "mode" {
+  type        = string
+  default     = "READ_WRITE"
+  description = "Specifies the access mode for the device. Options are READ_WRITE or READ_ONLY."
+}
+
+variable "labels" {
+  type = map(string)
+  default = {
+    environment = "production"
+  }
+  description = "A map of labels to assign to the resource, such as environment or other metadata."
+}
+
+variable "enable_confidential_compute" {
+  type        = bool
+  default     = false
+  description = "Determines whether confidential compute should be enabled for the resource. Default is false."
+}
+
+variable "interface" {
+  type        = string
+  default     = "NVME"
+  description = "Specifies the type of interface for the disk, such as NVME or SCSI."
+}
+
+variable "name_IPv6" {
+  type        = string
+  default     = "External IPv6"
+  description = "Specifies the name for the network interface or IP configuration."
+}
+
+variable "network_tier_IPv6" {
+  type        = string
+  default     = "STANDARD"
+  description = "Specifies the network tier for the interface. Options are PREMIUM or STANDARD."
+}
+
+variable "ip_cidr_range" {
+  type        = string
+  default     = ""
+  description = "The primary IP CIDR range for the subnetwork."
+}
+
+variable "subnetwork_range_name" {
+  type        = string
+  default     = ""
+  description = "The name of the secondary IP range for the subnetwork."
+}
+
+variable "nic_type" {
+  type        = string
+  default     = "GVNIC"
+  description = "Specifies the network interface card (NIC) type, such as GVNIC or VIRTIO."
+}
+
+variable "stack_type" {
+  type        = string
+  default     = "IPV4_ONLY"
+  description = "Specifies the IP stack type for the instance, such as IPV4_ONLY or IPV4_IPV6."
+}
+
+variable "queue_count" {
+  type        = number
+  default     = 1
+  description = "Specifies the number of queues for the NIC. Default is 1."
 }

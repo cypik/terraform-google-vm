@@ -68,7 +68,7 @@ module "compute_instance" {
   instance_count         = 1
   zone                   = "asia-northeast1-a"
   instance_tags          = ["foo", "bar"]
-  machine_type           = "n1-standard-2"
+  machine_type           = "e2-small"
   image                  = "ubuntu-2204-jammy-v20230908"
   service_account_scopes = ["cloud-platform"]
   subnetwork             = module.subnet.subnet_id

@@ -27,18 +27,26 @@ resource "google_compute_instance" "vm_instance" {
   zone         = var.zone
   tags         = var.instance_tags
   project      = data.google_client_config.current.project
+  metadata                  = var.metadata
+  metadata_startup_script   = var.metadata_startup_script
+  allow_stopping_for_update = var.allow_stopping_for_update
+  can_ip_forward            = var.can_ip_forward
+  description               = var.description
+  desired_status            = var.desired_status
+  enable_display            = var.enable_display
+  hostname                  = var.custom_hostname
 
   boot_disk {
-    auto_delete = true
-    device_name = "boot-disk"
-    mode        = "READ_WRITE"
+    auto_delete = var.auto_delete
+    device_name = var.device_name
+    mode        = var.mode
 
     initialize_params {
       size                        = var.boot_disk_size
       type                        = var.boot_disk_type
       image                       = var.image
-      labels                      = { environment = "production" }
-      enable_confidential_compute = false
+      labels                      = var.labels
+      enable_confidential_compute = var.enable_confidential_compute
     }
   }
 
@@ -46,7 +54,7 @@ resource "google_compute_instance" "vm_instance" {
     for_each = var.local_disks ? [1] : [] // Create scratch disk if local_disks is true
 
     content {
-      interface = "NVME"
+      interface = var.interface
     }
   }
   dynamic "shielded_instance_config" {
@@ -82,22 +90,21 @@ resource "google_compute_instance" "vm_instance" {
       for_each = var.enable_ipv6 ? [1] : []
       content {
         external_ipv6 = var.external_ipv6
-        name          = "External IPv6"
-        network_tier  = "STANDARD"
+        name          = var.name_IPv6
+        network_tier  = var.network_tier_IPv6
       }
     }
 
     dynamic "alias_ip_range" {
       for_each = var.enable_alias_ip_range ? [1] : []
       content {
-        ip_cidr_range         = "192.168.0.0/24"
-        subnetwork_range_name = "my-secondary-range"
+        ip_cidr_range         = var.ip_cidr_range
+        subnetwork_range_name = var.subnetwork_range_name
       }
     }
-
-    nic_type    = "GVNIC"
-    stack_type  = "IPV4_ONLY"
-    queue_count = 1
+    nic_type    = var.nic_type
+    stack_type  = var.stack_type
+    queue_count = var.queue_count
   }
 
   dynamic "service_account" {
@@ -111,17 +118,9 @@ resource "google_compute_instance" "vm_instance" {
   dynamic "guest_accelerator" {
     for_each = var.enable_accelerator ? [1] : []
     content {
-      type  = var.accelerator_type  # e.g., "nvidia-tesla-k80"
-      count = var.accelerator_count # e.g., 2
+      type  = var.accelerator_type  #  "nvidia-tesla-k80"
+      count = var.accelerator_count # 2
     }
   }
 
-  metadata                  = var.metadata
-  metadata_startup_script   = var.metadata_startup_script
-  allow_stopping_for_update = var.allow_stopping_for_update
-  can_ip_forward            = var.can_ip_forward
-  description               = var.description
-  desired_status            = var.desired_status
-  enable_display            = var.enable_display
-  hostname                  = var.custom_hostname
 }
