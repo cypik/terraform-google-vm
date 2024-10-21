@@ -39,6 +39,6 @@ output "current_status" {
 }
 
 output "instance_count" {
-  description = "The value of the instance_count variable."
   value       = module.compute_instance.instance_count
+  description = "The value of the instance_count variable."
 }
